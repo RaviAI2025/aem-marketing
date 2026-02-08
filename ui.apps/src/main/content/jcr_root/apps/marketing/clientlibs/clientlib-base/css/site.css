@@ -1,0 +1,10 @@
+/* Marketing Base Styles */
+.cmp-helloworld {
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+.cmp-helloworld__message {
+    font-size: 1.25rem;
+    color: #333;
+}
