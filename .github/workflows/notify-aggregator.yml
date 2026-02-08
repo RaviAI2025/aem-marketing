@@ -1,0 +1,23 @@
+name: Notify Aggregator
+
+on:
+  push:
+    branches: [master, main]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger aggregator sync
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.AGGREGATOR_PAT }}
+          repository: RaviAI2025/aem-aggregator
+          event-type: submodule-update
+          client-payload: |
+            {
+              "module": "aem-marketing",
+              "commit_message": "${{ github.event.head_commit.message }}",
+              "commit_sha": "${{ github.sha }}",
+              "author": "${{ github.actor }}"
+            }
